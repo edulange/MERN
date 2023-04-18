@@ -1,10 +1,16 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const { logger } = require('./middleware/logger')
+const errorHandler = require('./middleware/errorHandler')
+const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3500;
 
-//https://youtu.be/CvCiNeLnZ00?t=1922
+app.use(logger)
+
 app.use(express.json()) //outro built-in middleware
+
+app.use(cookieParser())
 
 app.use("/", express.static(path.join(__dirname, "public")));
 // esse app.use poderia ser reescrtio de outra forma
@@ -31,5 +37,7 @@ app.all("*", (req, res) => {
 		res.type("txt").send("404 Not Found");
 	}
 });
+
+app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
