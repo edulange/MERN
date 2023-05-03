@@ -37,6 +37,7 @@ Portanto, pode-se dizer que essa linha de código configura o middleware express
 */
 
 app.use("/", require("./routes/root"));
+app.use('/users', require('./routes/userRoutes'))
 
 app.all("*", (req, res) => {
 	res.status(404);
