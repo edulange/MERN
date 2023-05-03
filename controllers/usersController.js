@@ -75,6 +75,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.roles = roles
     user.active = active
 
+    //https://youtu.be/CvCiNeLnZ00?t=6539
     if (password) {
         //hash password
     }
