@@ -75,19 +75,45 @@ const updateUser = asyncHandler(async (req, res) => {
     user.roles = roles
     user.active = active
 
-    //https://youtu.be/CvCiNeLnZ00?t=6539
     if (password) {
-        //hash password
+        //hash pw
+        user.password = await bcrypt.hash(password, 10);
+
+        const updatedUser = await user.save();
+
+        res.json({ message: `${updateUser.username} updated` });
     }
-})
+});
 
 // @desc Delete a user
 // @route DELETE /users
 // @acess Private
 const deleteUser = asyncHandler(async (req, res) => {
+    const { id } = req.body;
 
-})
+    if (!id) {
+        return res.status(400).json({ message: "user ID required" });
+    }
 
+    const notes = await Note.findOne({ user: id }).lean().exec();
+    if (notes?.length) {
+        return res.status(400).json({ message: "User has assigned notes" });
+    }
+
+    const user = await User.findById(id).exec();
+
+    if (!user) {
+        return res.status(400).json({ message: "User not found" });
+    }
+
+    const result = await user.deleteOne(); //assim o result vai "segurar" o deletado
+
+    const reply = `Username ${result.username} with ID ${result._id} deleted`;
+
+    res.json(reply);
+});
+
+//https://youtu.be/CvCiNeLnZ00?t=6867
 module.exports = {
     getAllUsers,
     createNewUser,
