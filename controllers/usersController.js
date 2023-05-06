@@ -120,3 +120,5 @@ module.exports = {
     updateUser,
     deleteUser
 }
+
+console.log('hoje nnao')
