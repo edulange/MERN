@@ -8,7 +8,7 @@ const noteSchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId, //é um tipo de schema objectID
 			required: true,
 			ref: "User", //a qual schema? ao schema User se refere.
-		},
+		}, 
 		title: {
 			type: String,
 			required: true,
