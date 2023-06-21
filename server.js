@@ -52,5 +52,3 @@ mongoose.connection.on('error', err => {
     console.log(err)
     logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
 })
-
-//https://youtu.be/CvCiNeLnZ00?t=17130
