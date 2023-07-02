@@ -10,6 +10,7 @@ const getAllNotes = async (req, res) => {
 
     // If no notes 
     if (!notes?.length) {
+        console.log('testando se achou algum note')
         return res.status(400).json({ message: 'No notes found' })
     }
 
