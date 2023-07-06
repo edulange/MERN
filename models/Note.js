@@ -36,3 +36,4 @@ module.exports = mongoose.model('Note', noteSchema)
 
 console.log('teste')
 console.log('teste')
+console.log('teste')
