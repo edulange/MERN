@@ -18,6 +18,7 @@ const getAllNotes = async (req, res) => {
     // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE 
     // You could also do this with a for...of loop
     const notesWithUser = await Promise.all(notes.map(async (note) => {
+        console.log('chegou no note withuser')
         const user = await User.findById(note.user).lean().exec()
         return { ...note, username: user.username }
     }))
