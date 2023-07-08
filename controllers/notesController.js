@@ -5,6 +5,7 @@ const User = require('../models/User')
 // @route GET /notes
 // @access Private
 const getAllNotes = async (req, res) => {
+    console.log('GET ALL NOTES')
     // Get all notes from MongoDB
     const notes = await Note.find().lean()
 
@@ -18,7 +19,6 @@ const getAllNotes = async (req, res) => {
     // See Promise.all with map() here: https://youtu.be/4lqJBBEpjRE 
     // You could also do this with a for...of loop
     const notesWithUser = await Promise.all(notes.map(async (note) => {
-        console.log('chegou no note withuser')
         const user = await User.findById(note.user).lean().exec()
         return { ...note, username: user.username }
     }))
@@ -30,6 +30,7 @@ const getAllNotes = async (req, res) => {
 // @route POST /notes
 // @access Private
 const createNewNote = async (req, res) => {
+    console.log('tentou criar uma note')
     const { user, title, text } = req.body
 
     // Confirm data
