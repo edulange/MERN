@@ -129,3 +129,7 @@ module.exports = {
     updateUser,
     deleteUser
 }
+
+console.log('eu já sei oqq aconteceu')
+console.log('como eu não fiz nenhum note enquanto eu era autorizado')
+console.log('ele acabou não deixando criar note depois, qnem com os users.')
